@@ -22,10 +22,12 @@ export class AuthService {
   async validate(username: string, userPassword: string) {
     const user = await this.usersService.findByUsername(username);
 
-    if (
-      !user ||
-      !this.hashService.comparePasswords(userPassword, user.password)
-    ) {
+    const checkPassword = await this.hashService.comparePasswords(
+      userPassword,
+      user.password,
+    );
+
+    if (!user || !checkPassword) {
       return null;
     }
 
