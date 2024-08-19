@@ -2,26 +2,15 @@ import { Length } from 'class-validator';
 import { Wish } from '../../wishes/entities/wish.entity';
 import {
   Column,
-  CreateDateColumn,
   Entity,
   OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
 import { Offer } from '../../offers/entities/offer.entity';
 import { Wishlist } from '../../wishlists/entities/wishlist.entity';
+import { BaseEntity } from '../../base/base.entity';
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
+export class User extends BaseEntity {
   @Column({
     unique: true,
   })
